@@ -5,10 +5,13 @@
 **Dataset:** MIT-BIH Arrhythmia Database, Record 100, MLII channel
 **Source:** https://physionet.org/content/mitdb/1.0.0/
 
+---
 
 ## Project Description
 
 This project implements a rule-based signal processing algorithm to detect R-peaks from ECG signals and compute instantaneous heart rate, following the PhysioNet Technical Exercise guidelines.
+
+---
 
 ## Approach
 
@@ -18,12 +21,16 @@ This project implements a rule-based signal processing algorithm to detect R-pea
 4. Peak refinement by searching local maxima in ±20 ms window on raw ECG signal
 5. Heart rate computed as HR = 60 / RR interval
 
+---
+
 ## Assumptions
 
 - Only MLII channel is used, as specified
 - Sampling frequency taken from WFDB metadata (360 Hz)
 - Fixed parameters: 5–15 Hz bandpass, 250 ms refractory period, ±20 ms refinement window
 - **No reference annotations are used — detection is based solely on raw waveform data**
+
+---
 
 ## Libraries
 
@@ -36,6 +43,7 @@ This project implements a rule-based signal processing algorithm to detect R-pea
 
 No ML frameworks or ECG-specific toolkits used.
 
+---
 
 ## How to Run
 
@@ -53,8 +61,21 @@ jupyter notebook detect_beats.ipynb
 > Record 100 files must be downloaded manually from:
 > https://physionet.org/content/mitdb/1.0.0/
 
+---
 
-## Results
+## Output Results
+
+**Total beats detected in full record: 2273**
+
+### Plot 1 — First 10 seconds of MLII ECG with detected R-peaks
+![ECG first 10 seconds](plot1_ecg_10s.png)
+
+### Plot 2 — Instantaneous Heart Rate (first 3 minutes)
+![Heart rate 3 minutes](plot2_hr_3min.png)
+
+---
+
+## Summary Statistics
 
 | Metric | Value |
 |--------|-------|
@@ -64,10 +85,3 @@ jupyter notebook detect_beats.ipynb
 | First HR value | 73.7 bpm |
 | Mean HR | 75.8 bpm |
 | HR range | 52.0 – 116.8 bpm |
-
----
-
-## Outputs
-
-- **Plot 1:** First 10 seconds of MLII ECG with detected R-peaks marked in red
-- **Plot 2:** Instantaneous heart rate over the first 3 minutes of the record
